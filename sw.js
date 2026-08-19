@@ -1,5 +1,4 @@
-const CACHE_NAME = 'pomodorodoro-v1';
-
+const CACHE_NAME = 'pomodorodoro-v2';
 // List all the static assets your app needs to run offline
 const ASSETS_TO_CACHE = [
   './',
