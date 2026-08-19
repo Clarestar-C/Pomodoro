@@ -185,7 +185,15 @@ function playAmbientSound() {
 
     ambientAudio = new Audio(soundTracks[selectedSound]);
     ambientAudio.loop = true;
-    ambientAudio.volume = 0.4;
+
+    // Set custom volumes per track (0.0 to 1.0)
+    const soundVolumes = {
+        rain: 0.4,
+        cafe: 0.4,
+        ocean: 0.95  // Boosted ocean volume
+    };
+    ambientAudio.volume = soundVolumes[selectedSound] || 0.5;
+
     ambientAudio.play().catch(() => console.log('Ambient audio blocked until user interaction.'));
 }
 
