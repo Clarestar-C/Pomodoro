@@ -3,16 +3,16 @@
   "name": "Pomodorodoro | Study Tool",
   "icons": [
     {
-      "src": "pfp.jpeg",
+      "src": "image.png",
       "sizes": "192x192",
-      "type": "image/jpeg",
-      "purpose": "any"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "pfp.jpeg",
+      "src": "image.png",
       "sizes": "512x512",
-      "type": "image/jpeg",
-      "purpose": "any"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
   "start_url": "./index.html",
