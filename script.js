@@ -186,49 +186,24 @@ function playAmbientSound() {
     stopAmbientSound();
     if (selectedSound === 'none' || !soundTracks[selectedSound]) return;
 
+    ambientAudio = new Audio(soundTracks[selectedSound]);
+    ambientAudio.loop = true;
+
     const soundVolumes = {
         rain: 0.4,
         cafe: 0.4,
         ocean: 0.95
     };
-    const volume = soundVolumes[selectedSound] || 0.5;
+    ambientAudio.volume = soundVolumes[selectedSound] || 0.5;
 
-    // Create two audio decks for seamless overlapping
-    ambientAudioA = new Audio(soundTracks[selectedSound]);
-    ambientAudioB = new Audio(soundTracks[selectedSound]);
-    ambientAudioA.volume = volume;
-    ambientAudioB.volume = volume;
-
-    const bufferTime = 8.0; // Seconds before the end to trigger the next track
-
-    function attachLoopListener(currentDeck, nextDeck) {
-        currentDeck.ontimeupdate = function() {
-            if (this.duration && this.currentTime >= this.duration - bufferTime) {
-                this.ontimeupdate = null; // Prevent repeated firing
-                nextDeck.currentTime = 0;
-                nextDeck.play().catch(() => {});
-                attachLoopListener(nextDeck, currentDeck);
-            }
-        };
-    }
-
-    ambientAudioA.play().then(() => {
-        attachLoopListener(ambientAudioA, ambientAudioB);
-    }).catch(() => console.log('Ambient audio blocked until user interaction.'));
+    ambientAudio.play().catch(() => console.log('Ambient audio blocked until user interaction.'));
 }
 
 function stopAmbientSound() {
-    if (ambientAudioA) {
-        ambientAudioA.pause();
-        ambientAudioA.currentTime = 0;
-        ambientAudioA.ontimeupdate = null;
-        ambientAudioA = null;
-    }
-    if (ambientAudioB) {
-        ambientAudioB.pause();
-        ambientAudioB.currentTime = 0;
-        ambientAudioB.ontimeupdate = null;
-        ambientAudioB = null;
+    if (ambientAudio) {
+        ambientAudio.pause();
+        ambientAudio.currentTime = 0;
+        ambientAudio = null;
     }
 }
 // ==========================================
