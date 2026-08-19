@@ -53,9 +53,9 @@ const themes = {
 };
 
 const soundTracks = {
-    rain: 'https://assets.mixkit.co/active_storage/sfx/2433/2433-500.wav',
-    cafe: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-    ocean: 'https://assets.mixkit.co/active_storage/sfx/2432/2432-500.wav'
+    rain: './rain.aac',
+    cafe: './cafe.mp3',
+    ocean: './ocean.mpeg'
 };
 
 const MODE_LABELS = {
