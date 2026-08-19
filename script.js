@@ -128,6 +128,21 @@ function switchMode(newMode) {
 }
 
 function loadSavedPreferences() {
+    const today = new Date().toDateString(); // e.g., "Wed Aug 19 2026"
+    const savedDate = localStorage.getItem('lastActiveDate');
+
+    // Reset stats if it's a brand new day
+    if (savedDate !== today) {
+        completedSessions = 0;
+        totalFocusMinutes = 0;
+        localStorage.setItem('completedSessions', '0');
+        localStorage.setItem('totalFocusMinutes', '0');
+        localStorage.setItem('lastActiveDate', today);
+    } else {
+        completedSessions = parseInt(localStorage.getItem('completedSessions') || '0', 10);
+        totalFocusMinutes = parseInt(localStorage.getItem('totalFocusMinutes') || '0', 10);
+    }
+
     const savedSettings = localStorage.getItem('pomodoroSettings');
     if (savedSettings) {
         const settings = JSON.parse(savedSettings);
