@@ -5,9 +5,12 @@ const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './style.css',
-  './pfp.jpeg',
-  './manifest.json'
-  // Add any extra local .js files or sound files here (e.g., './script.js', './alarm.mp3')
+  './script.js',
+  './manifest.json',
+  './image.png',
+  './alarm.mpeg',
+  './rain.aac',
+  './ocean.mpeg'
 ];
 
 // Install Event: Caches all static resources
