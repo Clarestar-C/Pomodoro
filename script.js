@@ -199,7 +199,7 @@ function playAmbientSound() {
     ambientAudioA.volume = volume;
     ambientAudioB.volume = volume;
 
-    const bufferTime = 2.0; // Seconds before the end to trigger the next track
+    const bufferTime = 4.0; // Seconds before the end to trigger the next track
 
     function attachLoopListener(currentDeck, nextDeck) {
         currentDeck.ontimeupdate = function() {
