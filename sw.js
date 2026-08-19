@@ -1,5 +1,5 @@
-const CACHE_NAME = 'pomodorodoro-v2';
-// List all the static assets your app needs to run offline
+const CACHE_NAME = 'pomodorodoro-v4';
+
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -7,13 +7,14 @@ const ASSETS_TO_CACHE = [
   './script.js',
   './manifest.json',
   './image.png',
-  './alarm.mp3',
+  './alarm.mpeg',
   './rain.aac',
   './ocean.mpeg'
 ];
 
-// Install Event: Caches all static resources
+// Force the new service worker to activate immediately without waiting
 self.addEventListener('install', (event) => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(ASSETS_TO_CACHE);
@@ -21,26 +22,26 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// Activate Event: Cleans up old cache versions if you update CACHE_NAME
+// Delete old cache versions automatically when the new worker activates
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((keys) => {
+    caches.keys().then((cacheNames) => {
       return Promise.all(
-        keys.map((key) => {
-          if (key !== CACHE_NAME) {
-            return caches.delete(key);
+        cacheNames.map((cache) => {
+          if (cache !== CACHE_NAME) {
+            return caches.delete(cache);
           }
         })
       );
-    })
+    }).then(() => self.clients.claim())
   );
 });
 
-// Fetch Event: Serves resources from cache when offline
+// Serve cached assets if offline
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      return cachedResponse || fetch(event.request);
+    caches.match(event.request).then((response) => {
+      return response || fetch(event.request);
     })
   );
 });
