@@ -20,7 +20,7 @@ const settingsModal = document.getElementById('settings-modal');
 const closeModalBtn = document.getElementById('close-modal');
 const saveSettingsBtn = document.getElementById('save-settings');
 
-const alarmSound = new Audio('alarm.mpeg');
+const alarmSound = new Audio('alarm.mp3');
 let ambientAudio = null;
 
 // ==========================================
