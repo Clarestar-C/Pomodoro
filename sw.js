@@ -8,7 +8,7 @@ const ASSETS_TO_CACHE = [
   './script.js',
   './manifest.json',
   './image.png',
-  './alarm.mpeg',
+  './alarm.mp3',
   './rain.aac',
   './ocean.mpeg'
 ];
