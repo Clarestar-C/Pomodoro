@@ -184,15 +184,23 @@ function playAmbientSound() {
     if (selectedSound === 'none' || !soundTracks[selectedSound]) return;
 
     ambientAudio = new Audio(soundTracks[selectedSound]);
-    ambientAudio.loop = true;
+    ambientAudio.loop = false; // Disabled native loop to use custom seamless jump
 
-    // Set custom volumes per track (0.0 to 1.0)
     const soundVolumes = {
         rain: 0.4,
         cafe: 0.4,
-        ocean: 0.95  // Boosted ocean volume
+        ocean: 0.95
     };
     ambientAudio.volume = soundVolumes[selectedSound] || 0.5;
+
+    // Loop back to start 1.2 seconds before the end to skip silent trailing space
+    ambientAudio.addEventListener('timeupdate', function() {
+        const bufferTime = 1.2; 
+        if (this.duration && this.currentTime >= this.duration - bufferTime) {
+            this.currentTime = 0;
+            this.play();
+        }
+    });
 
     ambientAudio.play().catch(() => console.log('Ambient audio blocked until user interaction.'));
 }
@@ -200,6 +208,7 @@ function playAmbientSound() {
 function stopAmbientSound() {
     if (ambientAudio) {
         ambientAudio.pause();
+        ambientAudio.currentTime = 0;
         ambientAudio = null;
     }
 }
