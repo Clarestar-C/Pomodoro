@@ -43,6 +43,9 @@ let isRunning = false;
 let completedSessions = parseInt(localStorage.getItem('completedSessions') || '0', 10);
 let totalFocusMinutes = parseInt(localStorage.getItem('totalFocusMinutes') || '0', 10);
 
+let ambientAudioA = null;
+let ambientAudioB = null;
+
 const themes = {
     coral: { primary: '#E98B9A', hover: '#D77A89', bg: 'linear-gradient(135deg, #F8F3FF 0%, #EAF7FF 45%, #FFF5F8 100%)', pill: 'rgba(255, 240, 242, 0.65)' },
     blue:  { primary: '#8EAFE6', hover: '#7A9CD3', bg: 'linear-gradient(135deg, #F0F4FC 0%, #E3ECFB 100%)', pill: '#EEF3FD' },
@@ -183,36 +186,51 @@ function playAmbientSound() {
     stopAmbientSound();
     if (selectedSound === 'none' || !soundTracks[selectedSound]) return;
 
-    ambientAudio = new Audio(soundTracks[selectedSound]);
-    ambientAudio.loop = false; // Disabled native loop to use custom seamless jump
-
     const soundVolumes = {
         rain: 0.4,
         cafe: 0.4,
         ocean: 0.95
     };
-    ambientAudio.volume = soundVolumes[selectedSound] || 0.5;
+    const volume = soundVolumes[selectedSound] || 0.5;
 
-    // Loop back to start 1.2 seconds before the end to skip silent trailing space
-    ambientAudio.addEventListener('timeupdate', function() {
-        const bufferTime = 1.2; 
-        if (this.duration && this.currentTime >= this.duration - bufferTime) {
-            this.currentTime = 0;
-            this.play();
-        }
-    });
+    // Create two audio decks for seamless overlapping
+    ambientAudioA = new Audio(soundTracks[selectedSound]);
+    ambientAudioB = new Audio(soundTracks[selectedSound]);
+    ambientAudioA.volume = volume;
+    ambientAudioB.volume = volume;
 
-    ambientAudio.play().catch(() => console.log('Ambient audio blocked until user interaction.'));
+    const bufferTime = 1.5; // Seconds before the end to trigger the next track
+
+    function attachLoopListener(currentDeck, nextDeck) {
+        currentDeck.ontimeupdate = function() {
+            if (this.duration && this.currentTime >= this.duration - bufferTime) {
+                this.ontimeupdate = null; // Prevent repeated firing
+                nextDeck.currentTime = 0;
+                nextDeck.play().catch(() => {});
+                attachLoopListener(nextDeck, currentDeck);
+            }
+        };
+    }
+
+    ambientAudioA.play().then(() => {
+        attachLoopListener(ambientAudioA, ambientAudioB);
+    }).catch(() => console.log('Ambient audio blocked until user interaction.'));
 }
 
 function stopAmbientSound() {
-    if (ambientAudio) {
-        ambientAudio.pause();
-        ambientAudio.currentTime = 0;
-        ambientAudio = null;
+    if (ambientAudioA) {
+        ambientAudioA.pause();
+        ambientAudioA.currentTime = 0;
+        ambientAudioA.ontimeupdate = null;
+        ambientAudioA = null;
+    }
+    if (ambientAudioB) {
+        ambientAudioB.pause();
+        ambientAudioB.currentTime = 0;
+        ambientAudioB.ontimeupdate = null;
+        ambientAudioB = null;
     }
 }
-
 // ==========================================
 // 5. TIMER SESSION FLOW
 // ==========================================
