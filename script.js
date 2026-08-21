@@ -131,28 +131,64 @@ function switchMode(newMode) {
 }
 
 function loadSavedPreferences() {
-    const today = new Date().toDateString(); // e.g., "Wed Aug 19 2026"
+    const today = new Date().toDateString();
     const savedDate = localStorage.getItem('lastActiveDate');
 
-    // Reset stats if it's a brand new day
+    // Reset daily statistics when a new day starts
     if (savedDate !== today) {
         completedSessions = 0;
         totalFocusMinutes = 0;
+
         localStorage.setItem('completedSessions', '0');
         localStorage.setItem('totalFocusMinutes', '0');
         localStorage.setItem('lastActiveDate', today);
     } else {
-        completedSessions = parseInt(localStorage.getItem('completedSessions') || '0', 10);
-        totalFocusMinutes = parseInt(localStorage.getItem('totalFocusMinutes') || '0', 10);
+        completedSessions = parseInt(
+            localStorage.getItem('completedSessions') || '0',
+            10
+        );
+
+        totalFocusMinutes = parseInt(
+            localStorage.getItem('totalFocusMinutes') || '0',
+            10
+        );
+
+        // Prevent invalid stored values
+        if (isNaN(completedSessions) || completedSessions < 0) {
+            completedSessions = 0;
+            localStorage.setItem('completedSessions', '0');
+        }
+
+        if (isNaN(totalFocusMinutes) || totalFocusMinutes < 0) {
+            totalFocusMinutes = 0;
+            localStorage.setItem('totalFocusMinutes', '0');
+        }
     }
 
+    // Load saved settings safely
     const savedSettings = localStorage.getItem('pomodoroSettings');
+
     if (savedSettings) {
-        const settings = JSON.parse(savedSettings);
-        durations = settings.durations;
-        selectedTheme = settings.theme;
-        selectedSound = settings.sound || 'none';
-        applyThemeStyles(selectedTheme);
+        try {
+            const settings = JSON.parse(savedSettings);
+
+            if (
+                settings.durations &&
+                typeof settings.durations.pomodoro === 'number' &&
+                typeof settings.durations.shortBreak === 'number' &&
+                typeof settings.durations.longBreak === 'number' &&
+                themes[settings.theme]
+            ) {
+                durations = settings.durations;
+                selectedTheme = settings.theme;
+                selectedSound = settings.sound || 'none';
+
+                applyThemeStyles(selectedTheme);
+            }
+        } catch (error) {
+            console.log('Invalid saved settings. Using defaults.');
+            localStorage.removeItem('pomodoroSettings');
+        }
     }
 
     sessionsCompletedDisplay.innerText = completedSessions;
