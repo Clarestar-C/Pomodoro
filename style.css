@@ -1,560 +1,1391 @@
 /* ==========================================================================
    1. PREMIUM DESIGN SYSTEM & DYNAMIC CSS VARIABLES
    ========================================================================== */
+
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
+
 :root {
-    /* Theme Profiles managed seamlessly via JavaScript configuration sets */
+
     --primary-color: #E98B9A;
+
     --primary-hover: #D77A89;
-    --bg-gradient: linear-gradient(135deg, #F8F3FF 0%, #EAF7FF 45%, #FFF5F8 100%);
-    --card-bg: rgba(255, 255, 255, 0.55);
+
+    --bg-gradient:
+        linear-gradient(
+            135deg,
+            #F8F3FF 0%,
+            #EAF7FF 45%,
+            #FFF5F8 100%
+        );
+
+    --card-bg:
+        rgba(255, 255, 255, 0.55);
+
     --text-main: #3D3535;
+
     --text-muted: #C5AFAF;
-    --pill-bg-inactive: rgba(255, 240, 242, 0.65);
-    --modal-bg: rgba(255, 255, 255, 0.75);
-    
-    /* Global Curves & Animation Signatures */
-    --transition-smooth: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+    --pill-bg-inactive:
+        rgba(255, 240, 242, 0.65);
+
+    --modal-bg:
+        rgba(255, 255, 255, 0.75);
+
+    --transition-smooth:
+        all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
+
 
 * {
+
     box-sizing: border-box;
-    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    font-family:
+        'Outfit',
+        -apple-system,
+        BlinkMacSystemFont,
+        sans-serif;
 }
 
+
 body {
-    background: var(--bg-gradient);
-    color: var(--text-main);
+
+    background:
+        var(--bg-gradient);
+
+    color:
+        var(--text-main);
+
     display: flex;
+
     justify-content: center;
+
     align-items: center;
+
     height: 100vh;
+
     margin: 0;
+
     overflow: hidden;
+
     position: relative;
-    transition: var(--transition-smooth);
+
+    transition:
+        var(--transition-smooth);
 }
+
 
 /* ==========================================================================
    2. AMBIENT BACKGROUND ORBS & SPARKLE SYSTEM
    ========================================================================== */
+
 .orb {
+
     position: fixed;
+
     border-radius: 50%;
+
     filter: blur(40px);
+
     opacity: 0.45;
+
     pointer-events: none;
+
     z-index: 0;
-    animation: floatOrb 16s ease-in-out infinite;
+
+    animation:
+        floatOrb 16s ease-in-out infinite;
 }
 
-.orb-1 { width: 160px; height: 160px; background: #FFB6D9; left: 8%; bottom: 12%; }
-.orb-2 { width: 130px; height: 130px; background: #A0C4FF; right: 10%; bottom: 25%; animation-delay: -4s; }
-.orb-3 { width: 100px; height: 100px; background: #D8B4FE; right: 22%; top: 12%; animation-delay: -8s; }
-.orb-4 { width: 140px; height: 140px; background: #98E2E6; left: 18%; top: 18%; animation-delay: -12s; }
+
+.orb-1 {
+    width: 160px;
+    height: 160px;
+    background: #FFB6D9;
+    left: 8%;
+    bottom: 12%;
+}
+
+.orb-2 {
+    width: 130px;
+    height: 130px;
+    background: #A0C4FF;
+    right: 10%;
+    bottom: 25%;
+    animation-delay: -4s;
+}
+
+.orb-3 {
+    width: 100px;
+    height: 100px;
+    background: #D8B4FE;
+    right: 22%;
+    top: 12%;
+    animation-delay: -8s;
+}
+
+.orb-4 {
+    width: 140px;
+    height: 140px;
+    background: #98E2E6;
+    left: 18%;
+    top: 18%;
+    animation-delay: -12s;
+}
+
 
 @keyframes floatOrb {
-    0%, 100% { transform: translateY(0px) scale(1); }
-    50% { transform: translateY(-30px) scale(1.05); }
+
+    0%,
+    100% {
+        transform:
+            translateY(0px)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translateY(-30px)
+            scale(1.05);
+    }
 }
+
 
 /* ==========================================================================
    3. CORE UI GLASSMORPHISM CONTAINER CARD
    ========================================================================== */
+
 .timer-card {
-    background: var(--card-bg);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+
+    background:
+        var(--card-bg);
+
+    backdrop-filter:
+        blur(24px);
+
+    -webkit-backdrop-filter:
+        blur(24px);
+
     width: 390px;
-    padding: 40px 30px 30px 30px;
-    border-radius: 36px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.06), 
-                0 8px 24px rgba(255, 255, 255, 0.4) inset;
+
+    padding:
+        40px 30px 30px 30px;
+
+    border-radius:
+        36px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.5);
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.06),
+        0 8px 24px rgba(255, 255, 255, 0.4) inset;
+
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
+
     z-index: 1;
-    transition: var(--transition-smooth);
+
+    transition:
+        var(--transition-smooth);
 }
 
-/* Premium Continuous Running Breathing State Feedback */
+
 .timer-card.running {
-    animation: cardBreathe 4s ease-in-out infinite;
+
+    animation:
+        cardBreathe 4s ease-in-out infinite;
 }
+
 
 @keyframes cardBreathe {
-    0%, 100% { transform: scale(1); box-shadow: 0 25px 60px rgba(0, 0, 0, 0.06); }
-    50% { transform: scale(1.015); box-shadow: 0 30px 70px rgba(233, 139, 154, 0.1); }
+
+    0%,
+    100% {
+
+        transform:
+            scale(1);
+
+        box-shadow:
+            0 25px 60px rgba(0, 0, 0, 0.06);
+    }
+
+    50% {
+
+        transform:
+            scale(1.015);
+
+        box-shadow:
+            0 30px 70px
+            rgba(233, 139, 154, 0.1);
+    }
 }
 
-/* Top Mode Segment Navigation Track */
-.mode-toggle-bar {
-    background-color: var(--pill-bg-inactive);
-    padding: 6px;
-    border-radius: 22px;
-    display: flex;
-    width: 100%;
-    margin-bottom: 35px;
-}
-
-.mode-btn {
-    background: transparent;
-    border: none;
-    outline: none;
-    padding: 12px 14px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--text-muted);
-    border-radius: 16px;
-    cursor: pointer;
-    flex: 1;
-    transition: var(--transition-smooth);
-}
-
-.mode-btn.active {
-    background-color: var(--primary-color);
-    color: #FFFFFF;
-    font-weight: 600;
-    box-shadow: 0 8px 20px rgba(233, 139, 154, 0.25);
-}
 
 /* ==========================================================================
-   4. PROGRESS CIRCLE & DISPLAY ENGINE LAYOUT
+   4. MODE NAVIGATION
    ========================================================================== */
-.progress-circle-outer {
-    width: 230px;
-    height: 230px;
-    border-radius: 50%;
-    background: transparent;
+
+.mode-toggle-bar {
+
+    background-color:
+        var(--pill-bg-inactive);
+
+    padding: 6px;
+
+    border-radius: 22px;
+
     display: flex;
-    justify-content: center;
-    align-items: center;
+
+    width: 100%;
+
     margin-bottom: 35px;
+}
+
+
+.mode-btn {
+
+    background: transparent;
+
+    border: none;
+
+    outline: none;
+
+    padding: 12px 14px;
+
+    font-size: 0.9rem;
+
+    font-weight: 500;
+
+    color:
+        var(--text-muted);
+
+    border-radius: 16px;
+
+    cursor: pointer;
+
+    flex: 1;
+
+    transition:
+        var(--transition-smooth);
+}
+
+
+.mode-btn.active {
+
+    background-color:
+        var(--primary-color);
+
+    color: #FFFFFF;
+
+    font-weight: 600;
+
+    box-shadow:
+        0 8px 20px
+        rgba(233, 139, 154, 0.25);
+}
+
+
+/* ==========================================================================
+   5. PROGRESS CIRCLE & DISPLAY
+   ========================================================================== */
+
+.progress-circle-outer {
+
+    width: 230px;
+
+    height: 230px;
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    margin-bottom: 35px;
+
     position: relative;
 }
 
+
 .progress-ring {
+
     position: absolute;
+
     inset: 0;
+
     width: 100%;
+
     height: 100%;
-    transform: rotate(-90deg);
+
+    transform:
+        rotate(-90deg);
 }
 
+
 .progress-ring-bg {
-    stroke: var(--pill-bg-inactive);
+
+    stroke:
+        var(--pill-bg-inactive);
 }
+
 
 .progress-ring-fill,
 #progress-ring-fill {
-    stroke: var(--primary-color);
-    transition: stroke-dashoffset 0.35s ease;
+
+    stroke:
+        var(--primary-color);
+
+    transition:
+        stroke-dashoffset 0.35s ease;
 }
 
+
 .progress-circle-inner {
+
     text-align: center;
 }
 
+
 #time-left {
+
     font-size: 4rem;
+
     font-weight: 700;
-    color: var(--text-main);
-    letter-spacing: -1.5px;
+
+    color:
+        var(--text-main);
+
+    letter-spacing:
+        -1.5px;
+
     line-height: 1;
 }
 
+
 #timer-label {
+
     font-size: 0.8rem;
+
     font-weight: 600;
+
     text-transform: uppercase;
+
     letter-spacing: 2px;
-    color: var(--primary-color);
+
+    color:
+        var(--primary-color);
+
     margin-top: 10px;
 }
 
+
 /* ==========================================================================
-   5. CONTROL STACK PACKS & INTERACTIVES
+   6. CONTROLS
    ========================================================================== */
+
 .controls-deck {
+
     display: flex;
+
     width: 100%;
+
     gap: 16px;
+
     margin-bottom: 30px;
 }
 
+
 .control-btn {
+
     border: none;
+
     outline: none;
+
     padding: 15px 30px;
+
     font-size: 1rem;
+
     font-weight: 600;
+
     border-radius: 20px;
+
     cursor: pointer;
-    transition: var(--transition-smooth);
+
+    transition:
+        var(--transition-smooth);
 }
+
 
 .accent-primary {
-    background-color: var(--primary-color);
+
+    background-color:
+        var(--primary-color);
+
     color: #FFFFFF;
+
     flex: 2;
-    box-shadow: 0 8px 24px rgba(233, 139, 154, 0.25),
-                0 0 20px rgba(233, 139, 154, 0.15);
+
+    box-shadow:
+        0 8px 24px rgba(233, 139, 154, 0.25),
+        0 0 20px rgba(233, 139, 154, 0.15);
 }
+
 
 .accent-primary:hover {
-    background-color: var(--primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba(233, 139, 154, 0.35);
+
+    background-color:
+        var(--primary-hover);
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 28px
+        rgba(233, 139, 154, 0.35);
 }
+
 
 .accent-secondary {
-    background-color: var(--pill-bg-inactive);
-    color: var(--text-muted);
+
+    background-color:
+        var(--pill-bg-inactive);
+
+    color:
+        var(--text-muted);
+
     flex: 1;
 }
+
 
 .accent-secondary:hover {
-    color: var(--text-main);
-    background-color: rgba(0, 0, 0, 0.04);
+
+    color:
+        var(--text-main);
+
+    background-color:
+        rgba(0, 0, 0, 0.04);
 }
 
-/* Portfolio Module Element: Analytics Summary Row */
+
+/* ==========================================================================
+   7. STATISTICS
+   ========================================================================== */
+
 .stats-panel {
+
     display: flex;
+
     width: 100%;
-    background: rgba(255, 255, 255, 0.3);
+
+    background:
+        rgba(255, 255, 255, 0.3);
+
     border-radius: 20px;
+
     padding: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.2);
 }
+
 
 .stat-item {
+
     flex: 1;
+
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
 }
 
+
 .stat-label {
+
     font-size: 0.75rem;
-    color: var(--text-muted);
+
+    color:
+        var(--text-muted);
+
     font-weight: 500;
+
     margin-bottom: 4px;
 }
 
+
 .stat-item strong {
+
     font-size: 1.1rem;
+
     font-weight: 700;
-    color: var(--text-main);
+
+    color:
+        var(--text-main);
 }
 
+
 .stat-divider {
+
     width: 1px;
-    background: rgba(0, 0, 0, 0.05);
+
+    background:
+        rgba(0, 0, 0, 0.05);
+
     margin: 4px 0;
 }
 
-/* Floating Launch Tool Button Configuration Trigger */
+
+/* ==========================================================================
+   8. SETTINGS BUTTON
+   ========================================================================== */
+
 #settings-btn {
+
     position: fixed;
+
     bottom: 30px;
+
     right: 30px;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
+
+    background:
+        rgba(255, 255, 255, 0.6);
+
+    backdrop-filter:
+        blur(10px);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.4);
+
     font-size: 1.3rem;
+
     padding: 14px;
+
     border-radius: 50%;
+
     cursor: pointer;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.05);
-    transition: var(--transition-smooth);
+
+    box-shadow:
+        0 8px 24px
+        rgba(0, 0, 0, 0.05);
+
+    transition:
+        var(--transition-smooth);
+
     z-index: 10;
 }
 
+
 #settings-btn:hover {
-    transform: rotate(45deg) scale(1.1);
+
+    transform:
+        rotate(45deg)
+        scale(1.1);
+
     background: #FFFFFF;
 }
 
+
 /* ==========================================================================
-   6. PREMIUM GLASS CONFIGURATION INTERFACE (MODAL)
+   9. SETTINGS MODAL
    ========================================================================== */
+
 .modal-overlay {
+
     position: fixed;
+
     top: 0;
+
     left: 0;
+
     width: 100%;
+
     height: 100%;
-    background-color: rgba(240, 235, 245, 0.3);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+
+    background-color:
+        rgba(240, 235, 245, 0.3);
+
+    backdrop-filter:
+        blur(20px);
+
+    -webkit-backdrop-filter:
+        blur(20px);
+
     display: none;
+
     justify-content: center;
+
     align-items: center;
+
     z-index: 100;
 }
 
+
 .modal-window {
-    background: var(--modal-bg);
-    border: 1px solid rgba(255, 255, 255, 0.45);
+
+    background:
+        var(--modal-bg);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.45);
+
     width: 370px;
-    padding: 35px 30px;
+
+    padding:
+        35px 30px;
+
     border-radius: 32px;
-    box-shadow: 0 30px 70px rgba(0,0,0,0.07),
-                0 8px 24px rgba(255,255,255,0.5) inset;
-    animation: modalEnter 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.07),
+        0 8px 24px
+        rgba(255, 255, 255, 0.5) inset;
+
+    animation:
+        modalEnter
+        0.45s
+        cubic-bezier(0.2, 0.8, 0.2, 1)
+        forwards;
+
+    position: relative;
 }
+
 
 @keyframes modalEnter {
-    from { opacity: 0; transform: scale(0.92) translateY(20px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.92)
+            translateY(20px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
 }
 
+
 .modal-header {
+
     display: flex;
-    justify-content: space-between;
+
+    justify-content:
+        space-between;
+
     align-items: center;
+
     margin-bottom: 25px;
 }
 
+
 .modal-header h2 {
+
     margin: 0;
+
     font-size: 1.4rem;
-    color: var(--text-main);
+
+    color:
+        var(--text-main);
+
     font-weight: 700;
 }
 
+
 .close-x-btn {
-    background: var(--pill-bg-inactive);
+
+    background:
+        var(--pill-bg-inactive);
+
     border: none;
+
     font-size: 1.1rem;
-    color: var(--text-muted);
+
+    color:
+        var(--text-muted);
+
     width: 30px;
+
     height: 30px;
+
     border-radius: 50%;
+
     cursor: pointer;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
-    transition: var(--transition-smooth);
+
+    transition:
+        var(--transition-smooth);
 }
 
+
 .close-x-btn:hover {
-    background: var(--primary-color);
+
+    background:
+        var(--primary-color);
+
     color: white;
 }
 
+
 .settings-group h3 {
+
     font-size: 0.75rem;
-    color: var(--text-muted);
-    margin: 28px 0 14px 0;
+
+    color:
+        var(--text-muted);
+
+    margin:
+        28px 0 14px 0;
+
     text-transform: uppercase;
+
     letter-spacing: 1.5px;
+
     font-weight: 700;
+
     display: flex;
+
     align-items: center;
+
     gap: 6px;
 }
 
+
 .section-icon {
+
     font-size: 0.95rem;
 }
 
-/* Accessible Selector Button Grid Layout Map */
+
+/* ==========================================================================
+   10. THEME COLORS
+   ========================================================================== */
+
 .color-picker-row {
+
     display: flex;
-    justify-content: space-between;
+
+    justify-content:
+        space-between;
 }
+
 
 .color-circle {
+
     width: 36px;
+
     height: 36px;
+
     border-radius: 50%;
+
     border: none;
+
     cursor: pointer;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     color: #FFFFFF;
+
     font-size: 0.8rem;
+
     font-weight: bold;
-    transition: var(--transition-smooth);
+
+    transition:
+        var(--transition-smooth);
 }
+
 
 .color-circle:hover {
-    transform: scale(1.15);
+
+    transform:
+        scale(1.15);
 }
 
-.color-circle[data-theme="coral"]  { background-color: #E98B9A; }
-.color-circle[data-theme="blue"]   { background-color: #8EAFE6; }
-.color-circle[data-theme="green"]  { background-color: #A5D6A7; }
-.color-circle[data-theme="sand"]   { background-color: #E0A98C; }
-.color-circle[data-theme="purple"] { background-color: #C3A6DC; }
-.color-circle[data-theme="teal"]   { background-color: #86CDD1; }
+
+.color-circle[data-theme="coral"] {
+    background-color: #E98B9A;
+}
+
+.color-circle[data-theme="blue"] {
+    background-color: #8EAFE6;
+}
+
+.color-circle[data-theme="green"] {
+    background-color: #A5D6A7;
+}
+
+.color-circle[data-theme="sand"] {
+    background-color: #E0A98C;
+}
+
+.color-circle[data-theme="purple"] {
+    background-color: #C3A6DC;
+}
+
+.color-circle[data-theme="teal"] {
+    background-color: #86CDD1;
+}
+
 
 .color-circle.active {
-    outline: 2px solid var(--primary-color);
+
+    outline:
+        2px solid var(--primary-color);
+
     outline-offset: 3px;
 }
 
+
+/* ==========================================================================
+   11. TIMER DURATION
+   ========================================================================== */
+
 .duration-selectors {
+
     display: flex;
+
     flex-direction: column;
+
     gap: 16px;
 }
 
+
 .duration-row {
+
     display: flex;
-    justify-content: space-between;
+
+    justify-content:
+        space-between;
+
     align-items: center;
+
+    position: relative;
+
+    flex-wrap: nowrap;
 }
+
 
 .row-title {
+
     font-size: 0.95rem;
+
     font-weight: 500;
-    color: var(--text-main);
+
+    color:
+        var(--text-main);
 }
+
 
 .stepper-controls {
+
     display: flex;
+
     align-items: center;
+
     gap: 14px;
-    background: var(--pill-bg-inactive);
+
+    background:
+        var(--pill-bg-inactive);
+
     padding: 4px;
+
     border-radius: 14px;
+
+    position: relative;
+
+    z-index: 1;
 }
+
+
+/* Lift the active row above siblings so its dropdown is not clipped */
+
+.stepper-controls:has(.preset-options.open) {
+
+    z-index: 50;
+}
+
 
 .step-btn {
+
     background: #FFFFFF;
+
     border: none;
+
     width: 28px;
+
     height: 28px;
+
     border-radius: 50%;
+
     font-size: 1rem;
+
     font-weight: 600;
-    color: var(--primary-color);
+
+    color:
+        var(--primary-color);
+
     cursor: pointer;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-    transition: var(--transition-smooth);
+
+    box-shadow:
+        0 2px 6px
+        rgba(0, 0, 0, 0.03);
+
+    transition:
+        var(--transition-smooth);
 }
 
+
 .step-btn:hover {
-    background: var(--primary-color);
+
+    background:
+        var(--primary-color);
+
     color: #FFFFFF;
 }
 
+
+/* The middle number is clickable */
+
 .step-value {
+
     font-weight: 700;
+
     font-size: 0.95rem;
+
     min-width: 22px;
+
     text-align: center;
-    color: var(--text-main);
+
+    color:
+        var(--text-main);
+
+    border: none;
+
+    background: transparent;
+
+    padding: 0;
+
+    cursor: pointer;
+
+    transition:
+        var(--transition-smooth);
 }
 
-/* Sound Environment Selector Panel Matrix */
+
+/* Only clickable preset number gets this hover */
+
+.preset-toggle:hover {
+
+    color:
+        var(--primary-color);
+
+    transform:
+        scale(1.08);
+}
+
+
+/* ==========================================================================
+   12. FLOATING PRESET DROPDOWN
+   ========================================================================== */
+
+/*
+   IMPORTANT:
+
+   This dropdown is position:absolute.
+
+   Therefore it does NOT occupy normal page space.
+
+   This means opening it will NOT push Short Break
+   or Long Break downward.
+*/
+
+.preset-options {
+
+    position: absolute;
+
+    top: calc(100% + 8px);
+
+    left: 50%;
+
+    transform:
+        translateX(-50%)
+        translateY(-6px);
+
+    width: 70px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    padding: 6px;
+
+    background:
+        rgba(255, 255, 255, 0.96);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.8);
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 12px 30px
+        rgba(0, 0, 0, 0.10);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    max-height: 0;
+
+    overflow: hidden;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        max-height 0.25s ease,
+        visibility 0.2s ease;
+
+    z-index: 100;
+}
+
+
+/* OPEN DROPDOWN */
+
+.preset-options.open {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    max-height: 300px;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+
+/* Individual preset */
+
+.preset-option {
+
+    width: 100%;
+
+    height: 34px;
+
+    padding: 0;
+
+    border:
+        1px solid transparent;
+
+    border-radius: 9px;
+
+    background:
+        var(--pill-bg-inactive);
+
+    color:
+        var(--text-main);
+
+    font-family:
+        inherit;
+
+    font-size: 0.82rem;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        var(--transition-smooth);
+}
+
+
+/* Hover */
+
+.preset-option:hover {
+
+    background:
+        var(--primary-color);
+
+    border-color:
+        var(--primary-color);
+
+    color:
+        #FFFFFF;
+
+    transform: none;
+}
+
+
+/* Selected preset */
+
+.preset-option.selected {
+
+    background:
+        var(--primary-color);
+
+    color:
+        #FFFFFF;
+
+    font-weight: 600;
+}
+
+
+/* ==========================================================================
+   13. SOUND SELECTORS
+   ========================================================================== */
+
 .sound-panel {
+
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
     gap: 10px;
 }
 
+
 .sound-btn {
-    background: var(--pill-bg-inactive);
-    border: 1px solid transparent;
+
+    background:
+        var(--pill-bg-inactive);
+
+    border:
+        1px solid transparent;
+
     padding: 10px;
+
     border-radius: 12px;
+
     font-size: 0.85rem;
+
     font-weight: 600;
-    color: var(--text-main);
+
+    color:
+        var(--text-main);
+
     cursor: pointer;
+
     text-align: left;
-    transition: var(--transition-smooth);
+
+    transition:
+        var(--transition-smooth);
 }
+
 
 .sound-btn:hover {
+
     background: #FFFFFF;
-    border-color: rgba(0, 0, 0, 0.05);
+
+    border-color:
+        rgba(0, 0, 0, 0.05);
 }
+
 
 .sound-btn.active {
+
     background: #FFFFFF;
-    border-color: var(--primary-color);
-    box-shadow: 0 4px 12px rgba(233, 139, 154, 0.1);
+
+    border-color:
+        var(--primary-color);
+
+    box-shadow:
+        0 4px 12px
+        rgba(233, 139, 154, 0.1);
 }
 
-/* Main Modal Submission Core Call to Action */
-.apply-btn {
-    background-color: var(--primary-color);
-    color: #FFFFFF;
-    border: none;
-    width: 100%;
-    padding: 16px;
-    border-radius: 20px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 8px 24px rgba(233, 139, 154, 0.2);
-    margin-top: 30px;
-    transition: var(--transition-smooth);
-}
-
-.apply-btn:hover {
-    background-color: var(--primary-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 12px 28px rgba(233, 139, 154, 0.3);
-}
 
 /* ==========================================================================
-   7. RESPONSIVE & ACCESSIBILITY POLISH
+   14. APPLY BUTTON
    ========================================================================== */
+
+.apply-btn {
+
+    background-color:
+        var(--primary-color);
+
+    color: #FFFFFF;
+
+    border: none;
+
+    width: 100%;
+
+    padding: 16px;
+
+    border-radius: 20px;
+
+    font-size: 1rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 24px
+        rgba(233, 139, 154, 0.2);
+
+    margin-top: 30px;
+
+    transition:
+        var(--transition-smooth);
+}
+
+
+.apply-btn:hover {
+
+    background-color:
+        var(--primary-hover);
+
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 12px 28px
+        rgba(233, 139, 154, 0.3);
+}
+
+
+/* ==========================================================================
+   15. RESPONSIVE & ACCESSIBILITY
+   ========================================================================== */
+
 @media (max-width: 480px) {
+
     body {
+
         height: auto;
+
         min-height: 100vh;
+
         overflow-y: auto;
-        padding: 24px 16px 90px;
+
+        padding:
+            24px 16px 90px;
     }
+
 
     .timer-card {
+
         width: 100%;
+
         max-width: 390px;
-        padding: 32px 22px 24px;
+
+        padding:
+            32px 22px 24px;
     }
+
 
     .mode-btn {
+
         font-size: 0.8rem;
-        padding: 10px 8px;
+
+        padding:
+            10px 8px;
     }
 
+
     #time-left {
+
         font-size: 3.2rem;
     }
 
+
     #settings-btn {
+
         bottom: 20px;
+
         right: 20px;
     }
 
+
     .modal-window {
-        width: calc(100% - 32px);
+
+        width:
+            calc(100% - 32px);
+
         max-width: 370px;
-        padding: 28px 22px;
+
+        padding:
+            28px 22px;
     }
+
+
+    /*
+       Keep the dropdown small on phones.
+       It remains attached to the Pomodoro number.
+    */
+
+    .preset-options {
+
+        width: 70px;
+
+        z-index: 200;
+    }
+
 }
+
+
+/* ==========================================================================
+   16. FOCUS ACCESSIBILITY
+   ========================================================================== */
 
 .control-btn:focus-visible,
 .mode-btn:focus-visible,
 #settings-btn:focus-visible,
 .step-btn:focus-visible,
+.step-value:focus-visible,
+.preset-option:focus-visible,
 .color-circle:focus-visible,
 .sound-btn:focus-visible,
 .apply-btn:focus-visible,
 .close-x-btn:focus-visible {
-    outline: 2px solid var(--primary-color);
+
+    outline:
+        2px solid var(--primary-color);
+
     outline-offset: 2px;
 }
