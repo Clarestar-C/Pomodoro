@@ -4,129 +4,609 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Premium Aesthetic Pomodoro</title>
+
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
+
     <meta name="theme-color" content="#0a0a0c">
 </head>
+
 <body>
 
-
-
     <div class="timer-card">
-        
+
         <div class="mode-toggle-bar">
-            <button class="mode-btn active" data-mode="pomodoro">Pomodoro</button>
-            <button class="mode-btn" data-mode="shortBreak">Short Break</button>
-            <button class="mode-btn" data-mode="longBreak">Long Break</button>
+            <button class="mode-btn active" data-mode="pomodoro">
+                Pomodoro
+            </button>
+
+            <button class="mode-btn" data-mode="shortBreak">
+                Short Break
+            </button>
+
+            <button class="mode-btn" data-mode="longBreak">
+                Long Break
+            </button>
         </div>
+
 
         <div class="progress-circle-outer">
-            <svg class="progress-ring" viewBox="0 0 250 250" aria-hidden="true">
-                <circle class="progress-ring-bg" cx="125" cy="125" r="115" fill="none" stroke-width="6"></circle>
-                <circle id="progress-ring-fill" cx="125" cy="125" r="115" fill="none" stroke-width="6" stroke-linecap="round"></circle>
+
+            <svg
+                class="progress-ring"
+                viewBox="0 0 250 250"
+                aria-hidden="true"
+            >
+                <circle
+                    class="progress-ring-bg"
+                    cx="125"
+                    cy="125"
+                    r="115"
+                    fill="none"
+                    stroke-width="6"
+                ></circle>
+
+                <circle
+                    id="progress-ring-fill"
+                    cx="125"
+                    cy="125"
+                    r="115"
+                    fill="none"
+                    stroke-width="6"
+                    stroke-linecap="round"
+                ></circle>
             </svg>
+
+
             <div class="progress-circle-inner">
-                <div id="time-left">25:00</div>
-                <div id="timer-label">Pomodoro</div>
+
+                <div id="time-left">
+                    25:00
+                </div>
+
+                <div id="timer-label">
+                    Pomodoro
+                </div>
+
             </div>
+
         </div>
+
 
         <div class="controls-deck">
-            <button id="reset" class="control-btn accent-secondary">Reset</button>
-            <button id="start-stop" class="control-btn accent-primary">Start</button>
+
+            <button
+                id="reset"
+                class="control-btn accent-secondary"
+            >
+                Reset
+            </button>
+
+            <button
+                id="start-stop"
+                class="control-btn accent-primary"
+            >
+                Start
+            </button>
+
         </div>
+
 
         <div class="stats-panel">
+
             <div class="stat-item">
-                <span class="stat-label">Completed</span>
-                <strong id="sessions-completed">0</strong>
+
+                <span class="stat-label">
+                    Completed
+                </span>
+
+                <strong id="sessions-completed">
+                    0
+                </strong>
+
             </div>
+
+
             <div class="stat-divider"></div>
+
+
             <div class="stat-item">
-                <span class="stat-label">Focus Time</span>
-                <strong id="focus-minutes">0m</strong>
+
+                <span class="stat-label">
+                    Focus Time
+                </span>
+
+                <strong id="focus-minutes">
+                    0m
+                </strong>
+
             </div>
+
         </div>
 
     </div>
 
-    <button id="settings-btn" aria-label="Open Workspace Settings">⚙️</button>
 
-    <div id="settings-modal" class="modal-overlay">
+    <button
+        id="settings-btn"
+        aria-label="Open Workspace Settings"
+    >
+        ⚙️
+    </button>
+
+
+    <div
+        id="settings-modal"
+        class="modal-overlay"
+    >
+
         <div class="modal-window">
-            
+
+
+            <!-- ==========================================
+                 MODAL HEADER
+                 ========================================== -->
+
             <div class="modal-header">
-                <h2>Customize Workspace</h2>
-                <button id="close-modal" class="close-x-btn" aria-label="Close Settings Panel">&times;</button>
+
+                <h2>
+                    Customize Workspace
+                </h2>
+
+                <button
+                    id="close-modal"
+                    class="close-x-btn"
+                    aria-label="Close Settings Panel"
+                >
+                    &times;
+                </button>
+
             </div>
-            
+
+
+            <!-- ==========================================
+                 THEME COLOR
+                 ========================================== -->
+
             <div class="settings-group">
-                <h3><span class="section-icon">🎨</span>Theme Color</h3>
+
+                <h3>
+                    <span class="section-icon">🎨</span>
+                    Theme Color
+                </h3>
+
+
                 <div class="color-picker-row">
-                    <button class="color-circle active" data-theme="coral" aria-label="Select Coral Theme Profile">✓</button>
-                    <button class="color-circle" data-theme="blue" aria-label="Select Deep Sea Blue Profile"></button>
-                    <button class="color-circle" data-theme="green" aria-label="Select Botanical Green Profile"></button>
-                    <button class="color-circle" data-theme="sand" aria-label="Select Warm Desert Sand Profile"></button>
-                    <button class="color-circle" data-theme="purple" aria-label="Select Twilight Lavender Profile"></button>
-                    <button class="color-circle" data-theme="teal" aria-label="Select Minimalist Mint Teal Profile"></button>
+
+                    <button
+                        class="color-circle active"
+                        data-theme="coral"
+                        aria-label="Select Coral Theme Profile"
+                    >
+                        ✓
+                    </button>
+
+                    <button
+                        class="color-circle"
+                        data-theme="blue"
+                        aria-label="Select Deep Sea Blue Profile"
+                    ></button>
+
+                    <button
+                        class="color-circle"
+                        data-theme="green"
+                        aria-label="Select Botanical Green Profile"
+                    ></button>
+
+                    <button
+                        class="color-circle"
+                        data-theme="sand"
+                        aria-label="Select Warm Desert Sand Profile"
+                    ></button>
+
+                    <button
+                        class="color-circle"
+                        data-theme="purple"
+                        aria-label="Select Twilight Lavender Profile"
+                    ></button>
+
+                    <button
+                        class="color-circle"
+                        data-theme="teal"
+                        aria-label="Select Minimalist Mint Teal Profile"
+                    ></button>
+
                 </div>
+
             </div>
+
+
+            <!-- ==========================================
+                 TIMER DURATION
+                 ========================================== -->
 
             <div class="settings-group duration-selectors">
-                <h3><span class="section-icon">⏱</span>Timer Duration</h3>
-                
-                <div class="duration-row">
-                    <span class="row-title">Pomodoro</span>
-                    <div class="stepper-controls">
-                        <button class="step-btn" data-action="minus" data-target="pomodoro" type="button">−</button>
-                        <span id="display-pref-pomodoro" class="step-value">25</span>
-                        <button class="step-btn" data-action="plus" data-target="pomodoro" type="button">+</button>
-                    </div>
-                </div>
+
+                <h3>
+                    <span class="section-icon">⏱</span>
+                    Timer Duration
+                </h3>
+
+
+                <!-- POMODORO -->
 
                 <div class="duration-row">
-                    <span class="row-title">Short Break</span>
+
+                    <span class="row-title">
+                        Pomodoro
+                    </span>
+
+
                     <div class="stepper-controls">
-                        <button class="step-btn" data-action="minus" data-target="shortBreak" type="button">−</button>
-                        <span id="display-pref-short" class="step-value">5</span>
-                        <button class="step-btn" data-action="plus" data-target="shortBreak" type="button">+</button>
+
+                        <button
+                            class="step-btn"
+                            data-action="minus"
+                            data-target="pomodoro"
+                            type="button"
+                            aria-label="Decrease Pomodoro duration"
+                        >
+                            −
+                        </button>
+
+
+                        <!-- CLICKABLE NUMBER -->
+
+                        <button
+                            id="display-pref-pomodoro"
+                            class="step-value preset-toggle"
+                            data-target="pomodoro"
+                            type="button"
+                            aria-label="Choose Pomodoro preset"
+                            aria-expanded="false"
+                        >
+                            25
+                        </button>
+
+
+                        <button
+                            class="step-btn"
+                            data-action="plus"
+                            data-target="pomodoro"
+                            type="button"
+                            aria-label="Increase Pomodoro duration"
+                        >
+                            +
+                        </button>
+
+
+                        <!-- FLOATING PRESET DROPDOWN -->
+
+                        <div
+                            class="preset-options"
+                            data-preset-target="pomodoro"
+                        >
+
+                            <button
+                                type="button"
+                                class="preset-option"
+                                data-preset="15"
+                                data-target="pomodoro"
+                            >
+                                15
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preset-option"
+                                data-preset="25"
+                                data-target="pomodoro"
+                            >
+                                25
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preset-option"
+                                data-preset="30"
+                                data-target="pomodoro"
+                            >
+                                30
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preset-option"
+                                data-preset="45"
+                                data-target="pomodoro"
+                            >
+                                45
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preset-option"
+                                data-preset="60"
+                                data-target="pomodoro"
+                            >
+                                60
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preset-option"
+                                data-preset="90"
+                                data-target="pomodoro"
+                            >
+                                90
+                            </button>
+
+                        </div>
+
                     </div>
+
                 </div>
 
+
+                <!-- SHORT BREAK -->
+
                 <div class="duration-row">
-                    <span class="row-title">Long Break</span>
+
+                    <span class="row-title">
+                        Short Break
+                    </span>
+
                     <div class="stepper-controls">
-                        <button class="step-btn" data-action="minus" data-target="longBreak" type="button">−</button>
-                        <span id="display-pref-long" class="step-value">15</span>
-                        <button class="step-btn" data-action="plus" data-target="longBreak" type="button">+</button>
+
+                        <button
+                            class="step-btn"
+                            data-action="minus"
+                            data-target="shortBreak"
+                            type="button"
+                        >
+                            −
+                        </button>
+
+                        <button
+                            id="display-pref-short"
+                            class="step-value preset-toggle"
+                            data-target="shortBreak"
+                            type="button"
+                            aria-label="Choose Short Break preset"
+                            aria-expanded="false"
+                        >
+                            5
+                        </button>
+
+                        <button
+                            class="step-btn"
+                            data-action="plus"
+                            data-target="shortBreak"
+                            type="button"
+                        >
+                            +
+                        </button>
+
+
+                        <div
+                            class="preset-options"
+                            data-preset-target="shortBreak"
+                        >
+
+                            <button
+                                type="button"
+                                class="preset-option"
+                                data-preset="3"
+                                data-target="shortBreak"
+                            >
+                                3
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preset-option"
+                                data-preset="5"
+                                data-target="shortBreak"
+                            >
+                                5
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preset-option"
+                                data-preset="10"
+                                data-target="shortBreak"
+                            >
+                                10
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preset-option"
+                                data-preset="15"
+                                data-target="shortBreak"
+                            >
+                                15
+                            </button>
+
+                        </div>
+
                     </div>
+
                 </div>
+
+
+                <!-- LONG BREAK -->
+
+                <div class="duration-row">
+
+                    <span class="row-title">
+                        Long Break
+                    </span>
+
+                    <div class="stepper-controls">
+
+                        <button
+                            class="step-btn"
+                            data-action="minus"
+                            data-target="longBreak"
+                            type="button"
+                        >
+                            −
+                        </button>
+
+                        <button
+                            id="display-pref-long"
+                            class="step-value preset-toggle"
+                            data-target="longBreak"
+                            type="button"
+                            aria-label="Choose Long Break preset"
+                            aria-expanded="false"
+                        >
+                            15
+                        </button>
+
+                        <button
+                            class="step-btn"
+                            data-action="plus"
+                            data-target="longBreak"
+                            type="button"
+                        >
+                            +
+                        </button>
+
+
+                        <div
+                            class="preset-options"
+                            data-preset-target="longBreak"
+                        >
+
+                            <button
+                                type="button"
+                                class="preset-option"
+                                data-preset="10"
+                                data-target="longBreak"
+                            >
+                                10
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preset-option"
+                                data-preset="15"
+                                data-target="longBreak"
+                            >
+                                15
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preset-option"
+                                data-preset="20"
+                                data-target="longBreak"
+                            >
+                                20
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preset-option"
+                                data-preset="30"
+                                data-target="longBreak"
+                            >
+                                30
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
+
+
+            <!-- ==========================================
+                 AMBIENT SOUNDS
+                 ========================================== -->
 
             <div class="settings-group sound-selectors">
-                <h3><span class="section-icon">🎵</span>Ambient Soundscapes</h3>
+
+                <h3>
+                    <span class="section-icon">🎵</span>
+                    Ambient Soundscapes
+                </h3>
+
+
                 <div class="sound-panel">
-                    <button class="sound-btn" data-sound="none">🔇 None</button>
-                    <button class="sound-btn" data-sound="rain">🌧️ Rain</button>
-                    <button class="sound-btn" data-sound="cafe">☕ Cafe</button>
-                    <button class="sound-btn" data-sound="ocean">🌊 Ocean</button>
+
+                    <button
+                        class="sound-btn"
+                        data-sound="none"
+                    >
+                        🔇 None
+                    </button>
+
+                    <button
+                        class="sound-btn"
+                        data-sound="rain"
+                    >
+                        🌧️ Rain
+                    </button>
+
+                    <button
+                        class="sound-btn"
+                        data-sound="cafe"
+                    >
+                        ☕ Cafe
+                    </button>
+
+                    <button
+                        class="sound-btn"
+                        data-sound="ocean"
+                    >
+                        🌊 Ocean
+                    </button>
+
                 </div>
+
             </div>
 
+
+            <!-- ==========================================
+                 APPLY
+                 ========================================== -->
+
             <div class="modal-actions">
-                <button id="save-settings" class="apply-btn">Apply Configuration</button>
+
+                <button
+                    id="save-settings"
+                    class="apply-btn"
+                >
+                    Apply Configuration
+                </button>
+
             </div>
+
         </div>
+
     </div>
+
 
     <script src="script.js"></script>
 
+
     <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./sw.js');
-        });
-      }
+        if ('serviceWorker' in navigator) {
+
+            window.addEventListener('load', () => {
+
+                navigator.serviceWorker.register('./sw.js');
+
+            });
+
+        }
     </script>
+
 </body>
 </html>
